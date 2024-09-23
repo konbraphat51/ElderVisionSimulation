@@ -1,5 +1,16 @@
 var colorMatchingFunction, opticalDensity
 
+function AgeColor([r, g, b], ageTarget, ageBase = 20) {
+	const target = AgeColorSensitivity([r, g, b], ageTarget)
+	const base = AgeColorSensitivity([r, g, b], ageBase)
+
+	let result = [0, 0, 0]
+	for (let rgb = 0; rgb < 3; rgb++) {
+		result[rgb] = target[rgb] / base[rgb]
+	}
+	return result
+}
+
 //https://www.jstage.jst.go.jp/article/itej/62/7/62_7_1110/_pdf/-char/ja
 function AgeColorSensitivity([r, g, b], age) {
 	//>>integrate
