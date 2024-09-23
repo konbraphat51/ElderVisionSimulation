@@ -8,9 +8,9 @@ function AgeImage(imageData, ageTarget, ageBase = 20) {
 			ageTarget,
 			ageBase,
 		)
-		result.data[cnt] = Math.max(Math.min(r, 255), 0)
-		result.data[cnt + 1] = Math.max(Math.min(g, 255), 0)
-		result.data[cnt + 2] = Math.max(Math.min(b, 255), 0)
+		result.data[cnt] = r
+		result.data[cnt + 1] = g
+		result.data[cnt + 2] = b
 		result.data[cnt + 3] = imageData.data[cnt + 3]
 	}
 	return result
@@ -23,7 +23,10 @@ function AgeColor([r, g, b], ageTarget, ageBase = 20) {
 	let result = [0, 0, 0]
 	let color = [r, g, b]
 	for (let rgb = 0; rgb < 3; rgb++) {
-		result[rgb] = (target[rgb] / base[rgb]) * color[rgb]
+		result[rgb] = Math.max(
+			Math.min((target[rgb] / base[rgb]) * color[rgb], 255),
+			0,
+		)
 	}
 	return result
 }
