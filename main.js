@@ -10,9 +10,11 @@ function AgeColorSensitivity([r, g, b], age) {
 	}
 
 	//add areas of trapezoid
-	let area = 0
+	let area = [0, 0, 0]
 	for (let cnt = 0; cnt < values.length - 1; cnt++) {
-		area += ((values[cnt] + values[cnt + 1]) * 1.0) / 2
+		for (let rgb = 0; rgb < 3; rgb++) {
+			area[rgb] += ((values[cnt][rgb] + values[cnt + 1][rgb]) * 1.0) / 2
+		}
 	}
 	//<<integrate
 
