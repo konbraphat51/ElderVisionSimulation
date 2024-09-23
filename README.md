@@ -13,6 +13,8 @@ For creating an elderly-friendly interface, I wish this tool helps.
 
 I used the all the maths and data in section 2 in [Ikeda & Narita (2008)](https://www.jstage.jst.go.jp/article/itej/62/7/62_7_1110/_pdf/-char/ja)
 
+To be more specific, see [ColorAger.js](ColorAger.js)
+
 ## data
 
 - color matching function: https://cie.co.at/datatable/cie-1931-colour-matching-functions-2-degree-observer
