@@ -46,20 +46,20 @@ function _ComputeSpectralCharacteristics([r, g, b], wavelength) {
 	const regularized = [r / 255, g / 255, b / 255]
 
 	// based on liquid crystal display data from https://www.jstage.jst.go.jp/article/itej/62/7/62_7_1110/_pdf/-char/ja
-	let r = 0
+	let _r = 0
 	if (580 <= wavelength && wavelength <= 780) {
-		r = regularized[0] * 0.0383
+		_r = regularized[0] * 0.0383
 	}
-	let g = 0
+	let _g = 0
 	if (480 <= wavelength && wavelength <= 585) {
-		g = regularized[1] * 0.0514
+		_g = regularized[1] * 0.0514
 	}
-	let b = 0
+	let _b = 0
 	if (400 <= wavelength && wavelength <= 495) {
-		b = regularized[2] * 0.0876
+		_b = regularized[2] * 0.0876
 	}
 
-	return r + g + b
+	return _r + _g + _b
 }
 
 function _ComputeSpectralDensity(wavelength, age) {
