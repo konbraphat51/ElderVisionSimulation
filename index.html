@@ -5,6 +5,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
 	</head>
-	<body></body>
+	<body>
+		<image id="InputImage" />
+
+		<input type="file" id="file" accept="image/*" />
+	</body>
 	<script src="ColorAger.js"></script>
+	<script>
+		const file = document.getElementById("file")
+		const inputImage = document.getElementById("InputImage")
+
+		file.addEventListener("change", (e) => {
+			const reader = new FileReader()
+			reader.onload = () => {
+				//show input image
+				inputImage.src = reader.result
+			}
+			reader.readAsDataURL(e.target.files[0])
+		})
+	</script>
 </html>
