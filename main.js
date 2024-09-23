@@ -18,6 +18,26 @@ function _ComputeSpectralTransmittance(wavelength, age) {
 	return Math.pow(10, -_ComputeSpectralDensity(wavelength, age))
 }
 
+function _ComputeSpectralCharacteristics([r, g, b], wavelength) {
+	const regularized = [r / 255, g / 255, b / 255]
+
+	// based on liquid crystal display data from https://www.jstage.jst.go.jp/article/itej/62/7/62_7_1110/_pdf/-char/ja
+	let r = 0
+	if (580 <= wavelength && wavelength <= 780) {
+		r = regularized[0] * 0.0383
+	}
+	let g = 0
+	if (480 <= wavelength && wavelength <= 585) {
+		g = regularized[1] * 0.0514
+	}
+	let b = 0
+	if (400 <= wavelength && wavelength <= 495) {
+		b = regularized[2] * 0.0876
+	}
+
+	return r + g + b
+}
+
 function _ComputeSpectralDensity(wavelength, age) {
 	if (age <= 60) {
 		return (
