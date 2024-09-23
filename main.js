@@ -1,7 +1,31 @@
 var colorMatchingFunction, opticalDensity
 
 //https://www.jstage.jst.go.jp/article/itej/62/7/62_7_1110/_pdf/-char/ja
-function AgeColor([r, g, b], age) {}
+function AgeColorSensitivity([r, g, b], age) {
+	//>>integrate
+	//compute all
+	let values = []
+	for (let wave = 380; wave <= 780; wave++) {
+		values.push(_IntegratedFunction(wave, [r, g, b], age))
+	}
+
+	//add areas of trapezoid
+	let area = 0
+	for (let cnt = 0; cnt < values.length - 1; cnt++) {
+		area += ((values[cnt] + values[cnt + 1]) * 1.0) / 2
+	}
+	//<<integrate
+
+	return area
+}
+
+function _IntegratedFunction(wavelength, [r, g, b], age) {
+	const [r, g, b] = _ComputeSpectralSensitivity(wavelength)
+	const s = _ComputeSpectralTransmittance(wavelength, age)
+	const p = _ComputeSpectralCharacteristics([r, g, b], wavelength)
+
+	return [s * p * r, s * p * g, s * p * r]
+}
 
 function _ComputeSpectralSensitivity(wavelength) {
 	return _Multiply3x3Matrix(
