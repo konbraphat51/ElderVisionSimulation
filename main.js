@@ -38,7 +38,7 @@ function _IntegratedFunction(wavelength, [r, g, b], age) {
 	const s = _ComputeSpectralTransmittance(wavelength, age)
 	const p = _ComputeSpectralCharacteristics([r, g, b], wavelength)
 
-	return [s * p * rl, s * p * gl, s * p * rl]
+	return [s * p * rl, s * p * gl, s * p * bl]
 }
 
 function _ComputeSpectralSensitivity(wavelength) {
