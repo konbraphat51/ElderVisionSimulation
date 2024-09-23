@@ -10,6 +10,8 @@
 
 		<input type="file" id="file" accept="image/*" />
 
+		<p id="computing" style="display: none">computing...</p>
+
 		<h2>Input Image</h2>
 
 		<image id="InputImage" />
@@ -23,6 +25,10 @@
 		const inputImage = document.getElementById("InputImage")
 
 		file.addEventListener("change", (e) => {
+			//show computing message
+			const computing = document.getElementById("computing")
+			computing.style.display = "block"
+
 			const reader = new FileReader()
 			reader.onload = () => {
 				//show input image
@@ -48,6 +54,9 @@
 					outputImage.height = agedImage.height
 					const outputCtx = outputImage.getContext("2d")
 					outputCtx.putImageData(agedImage, 0, 0)
+
+					//hide computing message
+					computing.style.display = "none"
 				}
 			}
 			reader.readAsDataURL(e.target.files[0])
