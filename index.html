@@ -7,6 +7,7 @@
 	</head>
 	<body>
 		<image id="InputImage" />
+		<canvas id="OutputImage"> </canvas>
 
 		<input type="file" id="file" accept="image/*" />
 	</body>
@@ -20,6 +21,28 @@
 			reader.onload = () => {
 				//show input image
 				inputImage.src = reader.result
+
+				//to ImageData instance
+				const canvas = document.createElement("canvas")
+				const ctx = canvas.getContext("2d")
+				const image = new Image()
+				image.src = reader.result
+				image.onload = () => {
+					canvas.width = image.width
+					canvas.height = image.height
+					ctx.drawImage(image, 0, 0)
+					const imageData = ctx.getImageData(0, 0, image.width, image.height)
+
+					//color aging
+					const agedImage = AgeImage(imageData, 60)
+
+					//to canvas
+					const outputImage = document.getElementById("OutputImage")
+					outputImage.width = agedImage.width
+					outputImage.height = agedImage.height
+					const outputCtx = outputImage.getContext("2d")
+					outputCtx.putImageData(agedImage, 0, 0)
+				}
 			}
 			reader.readAsDataURL(e.target.files[0])
 		})
