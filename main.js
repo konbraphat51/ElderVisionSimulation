@@ -5,8 +5,9 @@ function AgeColor([r, g, b], ageTarget, ageBase = 20) {
 	const base = AgeColorSensitivity([r, g, b], ageBase)
 
 	let result = [0, 0, 0]
+	let color = [r, g, b]
 	for (let rgb = 0; rgb < 3; rgb++) {
-		result[rgb] = target[rgb] / base[rgb]
+		result[rgb] = (target[rgb] / base[rgb]) * color[rgb]
 	}
 	return result
 }
@@ -83,7 +84,7 @@ function _ComputeSpectralDensity(wavelength, age) {
 		)
 	} else {
 		return (
-			opticalDensity[wavelength][1] * (1.56 + 0.0667 * (n - 60)) +
+			opticalDensity[wavelength][1] * (1.56 + 0.0667 * (age - 60)) +
 			opticalDensity[wavelength][2]
 		)
 	}
