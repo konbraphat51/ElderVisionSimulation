@@ -7,11 +7,11 @@ https://konbraphat51.github.io/ElderVisionSimulation/
 
 It is said that elderlies' vision "get yellow" somehow. Don't ask me why.
 
-For creating an elderly-friendly interface, I wish this tool helps
+For creating an elderly-friendly interface, I wish this tool helps.
 
 ## Method
 
-used the all the maths and data in section 2 in [Ikeda & Narita (2008)](https://www.jstage.jst.go.jp/article/itej/62/7/62_7_1110/_pdf/-char/ja)
+I used the all the maths and data in section 2 in [Ikeda & Narita (2008)](https://www.jstage.jst.go.jp/article/itej/62/7/62_7_1110/_pdf/-char/ja)
 
 ## data
 
