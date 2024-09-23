@@ -14,6 +14,24 @@ function _ComputeSpectralSensitivity(wavelength) {
 	)
 }
 
+function _ComputeSpectralTransmittance(wavelength, age) {
+	return Math.pow(10, -_ComputeSpectralDensity(wavelength, age))
+}
+
+function _ComputeSpectralDensity(wavelength, age) {
+	if (age <= 60) {
+		return (
+			opticalDensity[wavelength][1] * (1 + 0.02 * (age - 32)) +
+			opticalDensity[wavelength][2]
+		)
+	} else {
+		return (
+			opticalDensity[wavelength][1] * (1.56 + 0.0667 * (n - 60)) +
+			opticalDensity[wavelength][2]
+		)
+	}
+}
+
 async function _FetchColorMatchingFunction() {
 	//get colormatching.csv
 	const response = await fetch("colormatching.csv")
