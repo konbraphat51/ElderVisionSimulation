@@ -1,4 +1,4 @@
-var colorMatchingFunction
+var colorMatchingFunction, opticalDensity
 
 //https://www.jstage.jst.go.jp/article/itej/62/7/62_7_1110/_pdf/-char/ja
 function AgeColor([r, g, b], age) {}
@@ -38,11 +38,11 @@ async function _FetchOpticalDensity() {
 
 	//parse csv to dictionary
 	const lines = raw.split("\n")
-	let OpticalDensity = {}
+	let opticalDensity = {}
 	let wavelengthes = []
 	lines.forEach((line) => {
 		const [wavelength, l, l1, l2] = line.split(",")
-		OpticalDensity[parseInt(wavelength)] = [l, l1, l2]
+		opticalDensity[parseInt(wavelength)] = [l, l1, l2]
 		wavelengthes.push(parseInt(wavelength))
 	})
 
@@ -55,18 +55,18 @@ async function _FetchOpticalDensity() {
 			const wavelength = front + delta
 			const ratio = delta / 10
 			const l =
-				OpticalDensity[front][0] * (1 - ratio) + OpticalDensity[back][0] * ratio
+				opticalDensity[front][0] * (1 - ratio) + opticalDensity[back][0] * ratio
 			const l1 =
-				OpticalDensity[front][1] * (1 - ratio) + OpticalDensity[back][1] * ratio
+				opticalDensity[front][1] * (1 - ratio) + opticalDensity[back][1] * ratio
 			const l2 =
-				OpticalDensity[front][2] * (1 - ratio) + OpticalDensity[back][2] * ratio
-			OpticalDensity[wavelength] = [l, l1, l2]
+				opticalDensity[front][2] * (1 - ratio) + opticalDensity[back][2] * ratio
+			opticalDensity[wavelength] = [l, l1, l2]
 		}
 	}
 
-	return OpticalDensity
+	return opticalDensity
 }
-var OpticalDensity = await _FetchOpticalDensity()
+opticalDensity = await _FetchOpticalDensity()
 
 function _Multiply3x3Matrix(matrix, vector) {
 	return [
