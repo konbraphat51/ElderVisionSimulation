@@ -91,7 +91,6 @@ async function _FetchColorMatchingFunction() {
 
 	return colormatching
 }
-colorMatchingFunction = await _FetchColorMatchingFunction()
 
 async function _FetchOpticalDensity() {
 	// get OpticalDensity.csv
@@ -128,7 +127,6 @@ async function _FetchOpticalDensity() {
 
 	return opticalDensity
 }
-opticalDensity = await _FetchOpticalDensity()
 
 function _Multiply3x3Matrix(matrix, vector) {
 	return [
@@ -143,3 +141,10 @@ function _Multiply3x3Matrix(matrix, vector) {
 			matrix[2][2] * vector[2],
 	]
 }
+
+async function initialize() {
+	colorMatchingFunction = await _FetchColorMatchingFunction()
+	opticalDensity = await _FetchOpticalDensity()
+}
+
+initialize()
