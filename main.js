@@ -17,7 +17,7 @@ function AgeColorSensitivity([r, g, b], age) {
 	//>>integrate
 	//compute all
 	let values = []
-	for (let wave = 400; wave <= 650; wave++) {
+	for (let wave = 400; wave <= 780; wave++) {
 		values.push(_IntegratedFunction(wave, [r, g, b], age))
 	}
 
