@@ -2,6 +2,9 @@
 
 https://konbraphat51.github.io/ElderVisionSimulation/
 
+![alt text](demo.png)
+(Image from: [Wikipedia](https://ja.wikipedia.org/wiki/%E8%87%AA%E7%84%B6))
+
 It is said that elderlies' vision "get yellow" somehow. Don't ask me why.
 
 For creating an elderly-friendly interface, I wish this tool helps
