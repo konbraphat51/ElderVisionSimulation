@@ -1,5 +1,21 @@
 var colorMatchingFunction, opticalDensity
 
+function AgeImage(imageData, ageTarget, ageBase = 20) {
+	const result = new ImageData(imageData.width, imageData.height)
+	for (let cnt = 0; cnt < imageData.data.length; cnt += 4) {
+		const [r, g, b] = AgeColor(
+			[imageData.data[cnt], imageData.data[cnt + 1], imageData.data[cnt + 2]],
+			ageTarget,
+			ageBase,
+		)
+		result.data[cnt] = max(min(r, 255), 0)
+		result.data[cnt + 1] = max(min(g, 255), 0)
+		result.data[cnt + 2] = max(min(b, 255), 0)
+		result.data[cnt + 3] = imageData.data[cnt + 3]
+	}
+	return result
+}
+
 function AgeColor([r, g, b], ageTarget, ageBase = 20) {
 	const target = AgeColorSensitivity([r, g, b], ageTarget)
 	const base = AgeColorSensitivity([r, g, b], ageBase)
