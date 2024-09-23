@@ -31,6 +31,43 @@ async function _FetchColorMatchingFunction() {
 }
 colorMatchingFunction = await _FetchColorMatchingFunction()
 
+async function _FetchOpticalDensity() {
+	// get OpticalDensity.csv
+	const response = await fetch("OpticalDensity.csv")
+	const raw = await response.text()
+
+	//parse csv to dictionary
+	const lines = raw.split("\n")
+	let OpticalDensity = {}
+	let wavelengthes = []
+	lines.forEach((line) => {
+		const [wavelength, l, l1, l2] = line.split(",")
+		OpticalDensity[parseInt(wavelength)] = [l, l1, l2]
+		wavelengthes.push(parseInt(wavelength))
+	})
+
+	//linear interpolation
+	for (let cnt = 0; cnt < wavelengthes.length - 1; cnt++) {
+		const front = wavelengthes[cnt]
+		const back = wavelengthes[cnt + 1]
+
+		for (let delta = 1; delta <= 9; delta++) {
+			const wavelength = front + delta
+			const ratio = delta / 10
+			const l =
+				OpticalDensity[front][0] * (1 - ratio) + OpticalDensity[back][0] * ratio
+			const l1 =
+				OpticalDensity[front][1] * (1 - ratio) + OpticalDensity[back][1] * ratio
+			const l2 =
+				OpticalDensity[front][2] * (1 - ratio) + OpticalDensity[back][2] * ratio
+			OpticalDensity[wavelength] = [l, l1, l2]
+		}
+	}
+
+	return OpticalDensity
+}
+var OpticalDensity = await _FetchOpticalDensity()
+
 function _Multiply3x3Matrix(matrix, vector) {
 	return [
 		matrix[0][0] * vector[0] +
