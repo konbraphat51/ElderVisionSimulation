@@ -86,7 +86,11 @@ async function _FetchColorMatchingFunction() {
 	let colormatching = {}
 	lines.forEach((line) => {
 		const [wavelength, x, y, z] = line.split(",")
-		colormatching[parseInt(wavelength)] = [x, y, z]
+		colormatching[parseInt(wavelength)] = [
+			parseFloat(x),
+			parseFloat(y),
+			parseFloat(z),
+		]
 	})
 
 	return colormatching
@@ -103,7 +107,11 @@ async function _FetchOpticalDensity() {
 	let wavelengthes = []
 	lines.forEach((line) => {
 		const [wavelength, l, l1, l2] = line.split(",")
-		opticalDensity[parseInt(wavelength)] = [l, l1, l2]
+		opticalDensity[parseInt(wavelength)] = [
+			parseFloat(l),
+			parseFloat(l1),
+			parseFloat(l2),
+		]
 		wavelengthes.push(parseInt(wavelength))
 	})
 
