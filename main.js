@@ -20,11 +20,11 @@ function AgeColorSensitivity([r, g, b], age) {
 }
 
 function _IntegratedFunction(wavelength, [r, g, b], age) {
-	const [r, g, b] = _ComputeSpectralSensitivity(wavelength)
+	const [rl, gl, bl] = _ComputeSpectralSensitivity(wavelength)
 	const s = _ComputeSpectralTransmittance(wavelength, age)
 	const p = _ComputeSpectralCharacteristics([r, g, b], wavelength)
 
-	return [s * p * r, s * p * g, s * p * r]
+	return [s * p * rl, s * p * gl, s * p * rl]
 }
 
 function _ComputeSpectralSensitivity(wavelength) {
