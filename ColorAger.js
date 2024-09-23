@@ -8,9 +8,9 @@ function AgeImage(imageData, ageTarget, ageBase = 20) {
 			ageTarget,
 			ageBase,
 		)
-		result.data[cnt] = max(min(r, 255), 0)
-		result.data[cnt + 1] = max(min(g, 255), 0)
-		result.data[cnt + 2] = max(min(b, 255), 0)
+		result.data[cnt] = Math.max(Math.min(r, 255), 0)
+		result.data[cnt + 1] = Math.max(Math.min(g, 255), 0)
+		result.data[cnt + 2] = Math.max(Math.min(b, 255), 0)
 		result.data[cnt + 3] = imageData.data[cnt + 3]
 	}
 	return result
