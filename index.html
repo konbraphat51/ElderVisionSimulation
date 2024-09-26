@@ -11,7 +11,11 @@
 		<input type="file" id="file" accept="image/*" />
 		<br />
 
-		<label for="age">Age : </label>
+		<label for="viewerAge">Your (viewer's) age: </label>
+		<input type="number" id="viewerAge" value="20" />
+		<br />
+
+		<label for="age">Converted Age : </label>
 		<input type="number" id="age" value="60" />
 		<br />
 
@@ -73,9 +77,10 @@
 
 				//get age
 				const age = document.getElementById("age").value
+				const viewerAge = document.getElementById("viewerAge").value
 
 				//run color aging
-				const outputImageData = AgeImage(imageData, age)
+				const outputImageData = AgeImage(imageData, age, viewerAge)
 
 				//show output image
 				ctx.putImageData(outputImageData, 0, 0)
